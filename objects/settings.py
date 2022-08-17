@@ -258,6 +258,7 @@ class Settings(object):
         self.settingsWindow.title("Settings")
         self.settingsWindow.pack_propagate(False)
         self.settingsWindow.update_idletasks()
+        self.settingsWindow.tk.call('wm', 'iconphoto', self.settingsWindow._w, PhotoImage(file='Img/ho2pt.png'))
 
         initX = int(app.root.winfo_screenwidth()) * 0.5 - int(self.settingsWindow.winfo_width()) * 0.5
         initY = int(app.root.winfo_screenheight()) * 0.5 - int(self.settingsWindow.winfo_height()) * 0.5

@@ -72,6 +72,7 @@ class DataExporter(object):
             self.exportOptions.title("Export options")
             self.exportOptions.focus_force()
             self.exportOptions.protocol("WM_DELETE_WINDOW", self.closeOptions)
+            self.exportOptions.tk.call('wm', 'iconphoto', self.exportOptions._w, PhotoImage(file='Img/ho2pt.png'))
 
             self.container = ttk.Labelframe(self.exportOptions,text='Choose values to be exported', padding=(10, 10))
             self.container.pack()
@@ -364,7 +365,7 @@ class DataExporter(object):
             self.overLay.destroy()
             self.exportOptions.destroy()
         else:
-            project = app.getActiveProject()
+            project = deepcopy(app.getActiveProject())
             subjects = project.getSubjects()
 
             # Create project plots
@@ -502,6 +503,11 @@ class DataExporter(object):
             # Delete images
             for i, (key, value) in enumerate(self.dfs.items()):
                 os.remove(f'{os.getcwd()}\plot{key}.png')
+            
+            try:
+                self.overLay.destroy()
+            except:
+                pass
             self.exportOptions.destroy()
 
         else: # Export all values and plots to excel file
@@ -658,6 +664,10 @@ class DataExporter(object):
             if self.statsVar2.get() == 1:
                 os.remove(f'{os.getcwd()}\plot-Mean(CI95%)-Project mean(95% CI).png')
             
+            try:
+                self.overLay.destroy()
+            except:
+                pass
             self.exportOptions.destroy()
 
     def getSortedData(self):
@@ -868,8 +878,6 @@ class DataExporter(object):
         workLoadObjects = []
         for l in filteredLoads:
             workLoadObjects.append(l.getDetails())
-
-        print(workLoadObjects)
 
         if projectPlot == False:
             self.createPlot(workLoadObjects, id, sid=sid)

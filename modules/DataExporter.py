@@ -50,6 +50,12 @@ class DataExporter(object):
         self.ml_Dig = 0
         self.bpm_Dig = 0
         self.perc_Dig = 0
+        self.m_Dig = 0
+        self.km_Dig = 1
+        self.ft_Dig = 0
+        self.kPa_Dig = 1
+        self.bar_Dig = 1
+        self.psi_Dig = 0
 
     def closeOptions(self):
         try:
@@ -1258,6 +1264,36 @@ class DataExporter(object):
         elif unit == 'bpm':
             for v in value:
                 v = '{0:.{1}f}'.format(float(v), self.bpm_Dig)
+                res.append(v)
+            return res
+        elif unit == 'm':
+            for v in value:
+                v = '{0:.{1}f}'.format(float(v), self.m_Dig)
+                res.append(v)
+            return res
+        elif unit == 'km':
+            for v in value:
+                v = '{0:.{1}f}'.format(float(v), self.km_Dig)
+                res.append(v)
+            return res
+        elif unit == 'ft':
+            for v in value:
+                v = '{0:.{1}f}'.format(float(v), self.ft_Dig)
+                res.append(v)
+            return res
+        elif unit == 'kPa':
+            for v in value:
+                v = '{0:.{1}f}'.format(float(v), self.kPa_Dig)
+                res.append(v)
+            return res
+        elif unit == 'bar':
+            for v in value:
+                v = '{0:.{1}f}'.format(float(v), self.bar_Dig)
+                res.append(v)
+            return res
+        elif unit == 'psi':
+            for v in value:
+                v = '{0:.{1}f}'.format(float(v), self.psi_Dig)
                 res.append(v)
             return res
         else:

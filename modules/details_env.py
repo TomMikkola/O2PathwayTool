@@ -9,7 +9,7 @@ class EnvDetailModule(ttk.Labelframe):
 
         self.labels = []
         self.detailRows = []
-        self.vars = ['Elevation', 'ATM', 'FiO2', 'Temp', 'Rh']
+        self.vars = ['Elevation', 'ATM', 'FiO2', 'Temperature', 'Rh']
 
         if app.settings.visDefaults['envDetails']:
             self.pack(side = LEFT, padx=(5,5), anchor='n')

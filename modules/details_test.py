@@ -2,7 +2,6 @@ import gc
 from tkinter import *
 from tkinter import ttk
 from objects.app import app
-from objects.test import Test
 from modules.ScrollableNotebook import ScrollableNotebook
 
 class TestDetailModule(ttk.Labelframe):

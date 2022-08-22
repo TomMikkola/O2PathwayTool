@@ -525,10 +525,11 @@ class Settings(object):
                     for s in subjects:
                         tests = s.getTests()
                         for t in tests:
-                            for key, val in self.unitDefaults.items():
-                                t.envDetails.setDetail(key, val)
-                            for key, val in self.envDefaults.items():
-                                t.envDetails.setDetail(key, val)
+                            for l in t.workLoads:
+                                for key, val in self.unitDefaults.items():
+                                    l.envDetails.setDetail(key, val)
+                                for key, val in self.envDefaults.items():
+                                    l.envDetails.setDetail(key, val)
                             
 
         settingsFile = open('settings.pkl', 'wb')
@@ -542,8 +543,11 @@ class Settings(object):
             for l in app.activeTest.workLoads:
                 for key, val in self.unitDefaults.items():
                     l.getDetails().setUnit(key, val)
+                    l.envDetails.setDetail(key, val)
                 for key, val in self.testDefaults.items():
                     l.getDetails().setValue(key, val)
+                for key, val in self.envDefaults.items():
+                    l.envDetails.setDetail(key, val)
             self.updatePhAndTemp(app.activeTest)
 
             app.testDetailModule.refreshTestDetails()

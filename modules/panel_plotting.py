@@ -57,7 +57,7 @@ class PlottingPanel(ttk.Frame):
                 self.plotNotebook.pack(expand=TRUE, fill=BOTH)
 
             # Create tab for the plot
-            plotTabObject = PlotTab(self.plotNotebook, self.workLoadDetailsObjects)
+            plotTabObject = PlotTab(self.plotNotebook, self.workLoadDetailsObjects, copy.deepcopy(app.activeTest))
 
             # Add plot to the notebook and objects list of plots
             self.plotNotebook.add(plotTabObject, text=app.getActiveTest().id)
@@ -80,20 +80,21 @@ class PlottingPanel(ttk.Frame):
             self.plotNotebook.pack(expand=TRUE, fill=BOTH)
 
         # Create tab for the plot
-        plotTabObject = PlotTab(self.plotNotebook, workLoadDetailsObjects)
+        plotTabObject = PlotTab(self.plotNotebook, workLoadDetailsObjects, copy.deepcopy(app.activeTest))
 
         # Add plot to the notebook and objects list of plots
         self.plotNotebook.add(plotTabObject, text=app.getActiveTest().id)
         self.plots.append(plotTabObject)
 
 class PlotTab(ttk.Frame):
-    def __init__(self, parentFrame, workLoadDetailsObjects, *args, **kwargs):
+    def __init__(self, parentFrame, workLoadDetailsObjects, test, *args, **kwargs):
         ttk.Frame.__init__(self, parentFrame, *args, **kwargs)
         self.pack(expand=TRUE)
         
         self.plot = None
         self.loadTabs = []
-        self.activeTest = app.getActiveTest()
+        # self.activeTest = app.getActiveTest()
+        self.activeTest = test
         self.activeTestId = self.activeTest.id
         self.workLoadDetailsObjects = workLoadDetailsObjects # WorkloadDetails objects
 

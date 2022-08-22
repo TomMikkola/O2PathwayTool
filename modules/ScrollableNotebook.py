@@ -135,7 +135,9 @@ class ScrollableNotebook(ttk.Frame):
             tabListMenu.grab_release()
 
     def _tabChanger(self,event):
-        try: self.notebookContent.select(self.notebookTab.index("current"))
+        try: 
+            self.notebookContent.select(self.notebookTab.index("current"))
+            app.envDetailModule.refresh()
         except: pass
 
     def _rightSlide(self,event):
